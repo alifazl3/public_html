@@ -2,7 +2,7 @@
 
 
 $BOT_TOKEN = "1702194647:AAF1PIcfpjs4CTbqcHYRq6R32mKqpdNmRZ0";
-
+$my_chatId = "103987269";
 sendMessage($my_chatId, "salam from server");
 
 $update = file_get_contents('php://input');
@@ -19,7 +19,6 @@ $replyMsg = "Hello ".$fullName."\nYou said: ".$userMessage;
 
 
 $text = $replyMsg;
-$my_chatId = "103987269";
 
 sendMessage($userChatId, $text);
 
