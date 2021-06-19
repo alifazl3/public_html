@@ -22,7 +22,7 @@ $my_chatId = "103987269";
 
 
 //
-//    $ch = curl_init();
+    $ch = curl_init();
 //
 //    $conn = curl_setopt($ch, CURLOPT_URL, "https://api.telegram.org/bot$BOT_TOKEN/sendMessage?chat_id=$chatId&text=$text");
 //    $conn = curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
