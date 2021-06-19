@@ -23,16 +23,17 @@ $update = json_decode($update, true);
 $userChatId = $update["message"]["from"]["id"]?$update["message"]["from"]["id"]:null;
 
 if($userChatId){
-    $userMessage = $update["message"]["text"]?$update["message"]["text"]:"Nothing";
-    $firstName = $update["message"]["from"]["first_name"]?$update["message"]["from"]["first_name"]:"N/A";
-    $lastName = $update["message"]["from"]["last_name"]?$update["message"]["from"]["last_name"]:"N/A";
-    $fullName = $firstName." ".$lastName;
-    $replyMsg = "Hello ".$fullName."\nYou said: ".$userMessage;
+//    $userMessage = $update["message"]["text"]?$update["message"]["text"]:"Nothing";
+//    $firstName = $update["message"]["from"]["first_name"]?$update["message"]["from"]["first_name"]:"N/A";
+//    $lastName = $update["message"]["from"]["last_name"]?$update["message"]["from"]["last_name"]:"N/A";
+//    $fullName = $firstName." ".$lastName;
+//    $replyMsg = "Hello ".$fullName."\nYou said: ".$userMessage;
 
 
     $parameters = array(
         "chat_id" => $userChatId,
-        "text" => $replyMsg,
+//        "text" => $replyMsg,
+        "text" => "test",
         "parseMode" => "html"
     );
 
