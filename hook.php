@@ -1,4 +1,22 @@
 <?php
+
+function send($method, $data){
+    global $BOT_TOKEN;
+
+    $url = "https://api.telegram.org/bot$BOT_TOKEN/$method";
+
+    if(!$curld = curl_init()){
+        exit;
+    }
+    curl_setopt($curld, CURLOPT_POST, true);
+    curl_setopt($curld, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($curld, CURLOPT_URL, $url);
+    curl_setopt($curld, CURLOPT_RETURNTRANSFER, true);
+    $output = curl_exec($curld);
+    curl_close($curld);
+    return $output;
+}
+
 $BOT_TOKEN = "1702194647:AAF1PIcfpjs4CTbqcHYRq6R32mKqpdNmRZ0";
 
 $update = file_get_contents('php://input');
@@ -22,21 +40,7 @@ if($userChatId){
     send("sendMessage", $parameters);
 }
 
-function send($method, $data){
-    global $BOT_TOKEN;
-    $url = "https://api.telegram.org/bot$BOT_TOKEN/$method";
 
-    if(!$curld = curl_init()){
-        exit;
-    }
-    curl_setopt($curld, CURLOPT_POST, true);
-    curl_setopt($curld, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($curld, CURLOPT_URL, $url);
-    curl_setopt($curld, CURLOPT_RETURNTRANSFER, true);
-    $output = curl_exec($curld);
-    curl_close($curld);
-    return $output;
-}
 
 
 ?>
