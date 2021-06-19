@@ -25,7 +25,8 @@ sendMessage($my_chatId, "salam from server");
 
 function sendMessage($chatId, $text)
 {
-    global $BOT_TOKEN;
+    $BOT_TOKEN = "1702194647:AAF1PIcfpjs4CTbqcHYRq6R32mKqpdNmRZ0";
+
     $ch = curl_init();
 
     $conn = curl_setopt($ch, CURLOPT_URL, "https://api.telegram.org/bot$BOT_TOKEN/sendMessage?chat_id=$chatId&text=$text");
