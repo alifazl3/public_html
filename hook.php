@@ -1,9 +1,8 @@
 <?php
 
 function send($method, $data){
-    global $BOT_TOKEN;
 
-    $url = "https://api.telegram.org/bot$BOT_TOKEN/$method";
+    $url = "https://api.telegram.org/bot1702194647:AAF1PIcfpjs4CTbqcHYRq6R32mKqpdNmRZ0/$method";
 
     if(!$curld = curl_init()){
         exit;
