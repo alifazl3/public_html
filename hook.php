@@ -5,7 +5,7 @@ $BOT_TOKEN = "1702194647:AAF1PIcfpjs4CTbqcHYRq6R32mKqpdNmRZ0";
 
 
 $parameters = array(
-    "chat_id" => "1702194647",
+    "chat_id" => "103987269",
     "text" => "test",
 );
 send("sendMessage", $parameters);
