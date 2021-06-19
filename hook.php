@@ -1,10 +1,22 @@
 <?php
 
-function send($method, $data){
+
+$BOT_TOKEN = "1702194647:AAF1PIcfpjs4CTbqcHYRq6R32mKqpdNmRZ0";
+
+
+$parameters = array(
+    "chat_id" => "1702194647",
+    "text" => "test",
+);
+send("sendMessage", $parameters);
+
+
+function send($method, $data)
+{
 
     $url = "https://api.telegram.org/bot1702194647:AAF1PIcfpjs4CTbqcHYRq6R32mKqpdNmRZ0/$method";
 
-    if(!$curld = curl_init()){
+    if (!$curld = curl_init()) {
         exit;
     }
     curl_setopt($curld, CURLOPT_POST, true);
@@ -15,32 +27,5 @@ function send($method, $data){
     curl_close($curld);
     return $output;
 }
-
-$BOT_TOKEN = "1702194647:AAF1PIcfpjs4CTbqcHYRq6R32mKqpdNmRZ0";
-
-$update = file_get_contents('php://input');
-$update = json_decode($update, true);
-$userChatId = $update["message"]["from"]["id"]?$update["message"]["from"]["id"]:null;
-
-if($userChatId){
-//    $userMessage = $update["message"]["text"]?$update["message"]["text"]:"Nothing";
-//    $firstName = $update["message"]["from"]["first_name"]?$update["message"]["from"]["first_name"]:"N/A";
-//    $lastName = $update["message"]["from"]["last_name"]?$update["message"]["from"]["last_name"]:"N/A";
-//    $fullName = $firstName." ".$lastName;
-//    $replyMsg = "Hello ".$fullName."\nYou said: ".$userMessage;
-
-
-    $parameters = array(
-        "chat_id" => $userChatId,
-//        "text" => $replyMsg,
-        "text" => "test",
-        "parseMode" => "html"
-    );
-
-    send("sendMessage", $parameters);
-}
-
-
-
 
 ?>
