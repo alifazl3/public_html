@@ -45,7 +45,6 @@ function transfer($price, $who, $whom)
 }
 
 
-$current_gc = get();
 
 
 
@@ -79,7 +78,7 @@ if ($update['message']['text'] == "GetCurrentSt") {
 
 }
 if ($update['message']['text'] == "help") {
-    $text = "GetCurrentSt : get current gc \n add: add price who\n sub: sub price who \n transfer: tra price who whom";
+    $text = "GetCurrentSt : get current gc \n"." add: add price who\n"." sub: sub price who \n "."transfer: tra price who whom";
 
 }
 if (substr($update['message']['text'],0,3) == "add") {
@@ -108,7 +107,6 @@ if (substr($update['message']['text'],0,3) == "tra") {
 
 
 
-put(json_encode($current_gc));
 
 //sendMessage($update['message']['from']['id'], $update['message']['text']);
 sendMessage($update['message']['from']['id'], $text);
