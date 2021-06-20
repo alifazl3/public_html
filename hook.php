@@ -36,6 +36,6 @@ $replyMsg = "Hello ".$fullName."\nYou said: ".$userMessage;
 
 $text = $replyMsg;
 
-sendMessage($my_chatId, $text);
+sendMessage($my_chatId, $update);
 //sendMessage($my_chatId, "salam from server");
 ?>
