@@ -29,15 +29,16 @@ $update = json_decode($update, true);
 
 $text = json_encode($update);
 
-//if ($update['message']['text'] == "GetCurrentSt") {
+if ($update['message']['text'] == "GetCurrentSt") {
+    $text = "command ok";
 //    $openFile = fopen("gc.txt", "r");
 //    $txt = fread($openFile, filesize("gc.txt"));
 //    fclose($openFile);
 //    $text = json_decode($txt);
-//}
-//
+}
 
-sendMessage($update['message']['from']['id'], $update['message']['text']);
-//sendMessage($update['message']['from']['id'], $text);
+
+//sendMessage($update['message']['from']['id'], $update['message']['text']);
+sendMessage($update['message']['from']['id'], $text);
 //sendMessage($my_chatId, "salam from server");
 ?>
