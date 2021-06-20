@@ -34,8 +34,8 @@ $text = json_encode($update);
 if ($update['message']['text'] == "GetCurrentSt") {
     $openFile = fopen("gc.txt", "r");
     $txt = fread($openFile, filesize("gc.txt"));
+    $text = $txt;
     fclose($openFile);
-    $text = json_decode($txt);
 }
 
 
