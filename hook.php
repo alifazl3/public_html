@@ -1,48 +1,9 @@
 <?php
 
 
-function get()
-{
-    $openFile = fopen("gc.txt", "r");
-    $txt = fread($openFile, filesize("gc.txt"));
-    fclose($openFile);
-    return json_decode($txt);
-}
-
-function put($txt)
-{
-    $openFile = fopen("gc.txt", "w");
-    fwrite($openFile, $txt);
-    fclose($openFile);
-}
 
 
-function add($price, $whom)
-{
-    $current_gc = get();
-    $current_gc[$whom] += $price;
-    put(json_encode($current_gc));
 
-}
-
-
-function sub($price, $whom)
-{
-    $current_gc = get();
-    $current_gc[$whom] = $current_gc[$whom] - $price;
-    put(json_encode($current_gc));
-}
-
-
-function transfer($price, $who, $whom)
-{
-
-    $current_gc = get();
-    $current_gc[$who] = $current_gc[$who] - $price;
-    $current_gc[$whom] = $current_gc[$whom] + $price;
-    put(json_encode($current_gc));
-
-}
 
 
 function sendMessage($chatId, $text)
@@ -68,15 +29,15 @@ $update = json_decode($update, true);
 
 $text = json_encode($update);
 
-if ($update['message']['text'] == "GetCurrentSt") {
-    $openFile = fopen("gc.txt", "r");
-    $txt = fread($openFile, filesize("gc.txt"));
-    fclose($openFile);
-    $text = json_decode($txt);
-}
-
+//if ($update['message']['text'] == "GetCurrentSt") {
+//    $openFile = fopen("gc.txt", "r");
+//    $txt = fread($openFile, filesize("gc.txt"));
+//    fclose($openFile);
+//    $text = json_decode($txt);
+//}
+//
 
 sendMessage($update['message']['from']['id'], $update['message']['text']);
-sendMessage($update['message']['from']['id'], $text);
+//sendMessage($update['message']['from']['id'], $text);
 //sendMessage($my_chatId, "salam from server");
 ?>
