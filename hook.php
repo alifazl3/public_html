@@ -1,6 +1,32 @@
 <?php
 
 
+function get()
+{
+    $openFile = fopen("gc.txt", "r");
+    $txt = fread($openFile, filesize("gc.txt"));
+    fclose($openFile);
+    return json_decode($txt);
+}
+
+function put($txt)
+{
+    $openFile = fopen("gc.txt", "w");
+    fwrite($openFile, $txt);
+    fclose($openFile);
+}
+
+function transfer($price, $who, $whom)
+{
+
+    $current_gc = get();
+    $current_gc[$who] = $current_gc[$who] - $price;
+    $current_gc[$whom] = $current_gc[$whom] + $price;
+    put(json_encode($current_gc));
+
+}
+
+
 function sendMessage($chatId, $text)
 {
     $BOT_TOKEN = "1702194647:AAF1PIcfpjs4CTbqcHYRq6R32mKqpdNmRZ0";
@@ -56,22 +82,8 @@ $text = json_encode($update);
 //}
 if (substr($update['message']['text'], 0, 3) == "tra") {
     $param = explode(' ', $update['message']['text']);
-
-
-
-    $openFile = fopen("gc.txt", "r");
-    $current_gc = fread($openFile, filesize("gc.txt"));
-    fclose($openFile);
-
-    $text = "tra verify" . json_encode($param) . json_encode($current_gc);
-
-    $current_gc[$param[2]] = intval($current_gc[$param[2]]) - intval($param[1]);
-    $current_gc[$param[3]] = intval($current_gc[$param[3]]) + intval($param[1]);
-    $openFile = fopen("gc.txt", "w");
-    fwrite($openFile, json_encode($current_gc));
-    fclose($openFile);
-
-
+    $text = "tra verified   ||  ".json_encode($param);
+    transfer($param[1],$param[2],$param[3]);
 }
 
 
