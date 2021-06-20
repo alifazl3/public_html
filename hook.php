@@ -65,11 +65,11 @@ if (substr($update['message']['text'], 0, 3) == "tra") {
 
     $text = "tra verify" . json_encode($param) . json_encode($current_gc);
 
-//    $current_gc[$param[2]] = $current_gc[$param[2]] - $param[1];
-//    $current_gc[$param[3]] = $current_gc[$param[3]] + $param[1];
-//    $openFile = fopen("gc.txt", "w");
-//    fwrite($openFile, json_encode($current_gc));
-//    fclose($openFile);
+    $current_gc[$param[2]] = intval($current_gc[$param[2]]) - intval($param[1]);
+    $current_gc[$param[3]] = intval($current_gc[$param[3]]) + intval($param[1]);
+    $openFile = fopen("gc.txt", "w");
+    fwrite($openFile, json_encode($current_gc));
+    fclose($openFile);
 
 
 }
