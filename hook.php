@@ -25,11 +25,7 @@ $update = file_get_contents('php://input');
 $update = json_decode($update, true);
 $userChatId = $update["message"]["from"]["id"]?$update["message"]["from"]["id"]:null;
 
-$userMessage = $update["message"]["text"]?$update["message"]["text"]:"Nothing";
-$firstName = $update["message"]["from"]["first_name"]?$update["message"]["from"]["first_name"]:"N/A";
-$lastName = $update["message"]["from"]["last_name"]?$update["message"]["from"]["last_name"]:"N/A";
-$fullName = $firstName." ".$lastName;
-$replyMsg = "Hello ".$fullName."\nYou said: ".$userMessage;
+
 
 
 
@@ -39,7 +35,7 @@ $text = json_encode($update);
 
 
 
-sendMessage($my_chatId, $update[]);
+sendMessage($update['message']['from']['id'] , $update['message']['text']);
 sendMessage($my_chatId, $text);
 //sendMessage($my_chatId, "salam from server");
 ?>

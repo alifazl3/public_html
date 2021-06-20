@@ -2,7 +2,6 @@
 //echo "hello world";
 
 if (isset($_GET['json'])) {
-//    echo urldecode($_GET['json']);
     put(urldecode($_GET['json']));
     header("Location: index.php");
 }
@@ -11,31 +10,13 @@ if (isset($_POST['user'])) {
     var_dump($_POST);
 }
 
-class transactions
-{
-    public function add($price, $whom)
-    {
-
-    }
-
-    public function sub($price, $whom)
-    {
-
-    }
-
-    public function transfer($price, $who, $whom)
-    {
-
-    }
-}
-
 
 function get()
 {
     $openFile = fopen("gc.txt", "r");
     $txt = fread($openFile, filesize("gc.txt"));
     fclose($openFile);
-    return $txt;
+    return json_decode($txt);
 }
 
 function put($txt)
@@ -44,6 +25,38 @@ function put($txt)
     fwrite($openFile, $txt);
     fclose($openFile);
 }
+
+
+function add($price, $whom)
+{
+    $current_gc = get();
+    $current_gc[$whom]+=$price;
+    put(json_encode($current_gc));
+
+}
+
+
+function sub($price, $whom)
+{
+    $current_gc = get();
+    $current_gc[$whom]=$current_gc[$whom]-$price;
+    put(json_encode($current_gc));
+}
+
+
+function transfer($price, $who, $whom)
+{
+
+    $current_gc = get();
+    $current_gc[$who]=$current_gc[$who]-$price;
+    $current_gc[$whom]=$current_gc[$whom]+$price;
+    put(json_encode($current_gc));
+
+}
+
+
+
+
 
 $persons = array(
     "shamc",
@@ -60,7 +73,7 @@ $persons = array(
     "hamed",
     "hasan"
 );
-$current_gc = json_decode(get());
+$current_gc = get();
 
 
 //var_dump($current_gc);
@@ -148,7 +161,6 @@ $current_gc = json_decode(get());
             .login_btn {
                 background-color: rgba(255, 191, 16, 0.81);
                 border: none;
-
 
 
                 padding: 5px;
