@@ -29,12 +29,13 @@ $update = json_decode($update, true);
 
 $text = json_encode($update);
 
+
+
 if ($update['message']['text'] == "GetCurrentSt") {
-    $text = "command ok";
-//    $openFile = fopen("gc.txt", "r");
-//    $txt = fread($openFile, filesize("gc.txt"));
-//    fclose($openFile);
-//    $text = json_decode($txt);
+    $openFile = fopen("gc.txt", "r");
+    $txt = fread($openFile, filesize("gc.txt"));
+    fclose($openFile);
+    $text = json_decode($txt);
 }
 
 
