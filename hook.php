@@ -20,7 +20,7 @@ function put($txt)
 function add($price, $whom)
 {
     $current_gc = get();
-    $current_gc[$whom]+=$price;
+    $current_gc[$whom] += $price;
     put(json_encode($current_gc));
 
 }
@@ -29,7 +29,7 @@ function add($price, $whom)
 function sub($price, $whom)
 {
     $current_gc = get();
-    $current_gc[$whom]=$current_gc[$whom]-$price;
+    $current_gc[$whom] = $current_gc[$whom] - $price;
     put(json_encode($current_gc));
 }
 
@@ -38,20 +38,16 @@ function transfer($price, $who, $whom)
 {
 
     $current_gc = get();
-    $current_gc[$who]=$current_gc[$who]-$price;
-    $current_gc[$whom]=$current_gc[$whom]+$price;
+    $current_gc[$who] = $current_gc[$who] - $price;
+    $current_gc[$whom] = $current_gc[$whom] + $price;
     put(json_encode($current_gc));
 
 }
 
 
-
-
-
-
 function sendMessage($chatId, $text)
 {
-$BOT_TOKEN = "1702194647:AAF1PIcfpjs4CTbqcHYRq6R32mKqpdNmRZ0";
+    $BOT_TOKEN = "1702194647:AAF1PIcfpjs4CTbqcHYRq6R32mKqpdNmRZ0";
 
     $ch = curl_init();
 
@@ -62,7 +58,6 @@ $BOT_TOKEN = "1702194647:AAF1PIcfpjs4CTbqcHYRq6R32mKqpdNmRZ0";
 }
 
 
-
 $BOT_TOKEN = "1702194647:AAF1PIcfpjs4CTbqcHYRq6R32mKqpdNmRZ0";
 $my_chatId = "103987269";
 
@@ -71,22 +66,17 @@ $update = file_get_contents('php://input');
 $update = json_decode($update, true);
 
 
-
 $text = json_encode($update);
 
-switch ($update['message']['text']) {
-    case "GetCurrentSt":
-        $text = get();
-        break;
+if ($update['message']['text'] == "GetCurrentSt") {
+    $openFile = fopen("gc.txt", "r");
+    $txt = fread($openFile, filesize("gc.txt"));
+    fclose($openFile);
+    $text = json_decode($txt);
 }
 
 
-
-
-
-
-
-sendMessage($update['message']['from']['id'] , $update['message']['text']);
-sendMessage($update['message']['from']['id'] , $text);
+sendMessage($update['message']['from']['id'], $update['message']['text']);
+sendMessage($update['message']['from']['id'], $text);
 //sendMessage($my_chatId, "salam from server");
 ?>
