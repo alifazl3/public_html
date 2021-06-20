@@ -78,28 +78,23 @@ if ($update['message']['text'] == "GetCurrentSt") {
 
 }
 if ($update['message']['text'] == "help") {
-    $text = "GetCurrentSt : get current gc \n"." add: add price who\n"." sub: sub price who \n "."transfer: tra price who whom";
-
+    $text = "GetCurrentSt : get current gc   add: add price who  sub: sub price who transfer: tra price who whom";
 }
 if (substr($update['message']['text'],0,3) == "add") {
-
     $param = explode(' ',$update['message']['text']);
-
     add($param[1],$param[2]);
     $text = "add verify".json_encode($param);
 }
 if (substr($update['message']['text'],0,3) == "sub") {
     $param = explode(' ',$update['message']['text']);
     sub($param[1],$param[2]);
-
-
     $text = "sub verify".json_encode($param);
 }
 if (substr($update['message']['text'],0,3) == "tra") {
     $param = explode(' ',$update['message']['text']);
     transfer($param[1],$param[2],$param[3]);
-
     $text = "tra verify".json_encode($param);
+
 }
 
 
