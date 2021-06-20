@@ -221,7 +221,7 @@ $current_gc = get();
             <?php
             foreach ($current_gc as $name => $worth) {
                 echo "<tr>";
-                echo "<td contenteditable>" . $name . "</td>";
+                echo "<td>" . $name . "</td>";
                 echo "<td contenteditable>" . $worth . "</td>";
                 echo "</tr>";
             }
