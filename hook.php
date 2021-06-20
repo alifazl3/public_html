@@ -19,6 +19,8 @@ function put($txt)
 function transfer($price, $who, $whom)
 {
 
+
+
     $current_gc = get();
     $current_gc[$who] = $current_gc[$who] - $price;
     $current_gc[$whom] = $current_gc[$whom] + $price;
@@ -50,39 +52,15 @@ $update = json_decode($update, true);
 
 $text = json_encode($update);
 
-//
-//if ($update['message']['text'] == "GetCurrentSt") {
-//    $openFile = fopen("gc.txt", "r");
-//    $txt = fread($openFile, filesize("gc.txt"));
-//    fclose($openFile);
-//
-//    $text = json_decode($txt);
-//
-//}
-//if ($update['message']['text'] == "help") {
-//    $text = "GetCurrentSt : get current gc   add: add price who  sub: sub price who transfer: tra price who whom";
-//}
-//if (substr($update['message']['text'], 0, 3) == "add") {
-//    $param = explode(' ', $update['message']['text']);
-//
-//    $openFile = fopen("gc.txt", "r");
-//    $current_gc = fread($openFile, filesize("gc.txt"));
-//    fclose($openFile);
-//    $current_gc[$param[2]] += $param[1];
-//    $openFile = fopen("gc.txt", "w");
-//    fwrite($openFile, json_encode($current_gc));
-//    fclose($openFile);
-//
-//    $text = "add verify" . json_encode($param);
-//}
-//if (substr($update['message']['text'], 0, 3) == "sub") {
-//    $param = explode(' ', $update['message']['text']);
-//    sub($param[1], $param[2]);
-//    $text = "sub verify" . json_encode($param);
-//}
+
+
+
 if (substr($update['message']['text'], 0, 3) == "tra") {
     $param = explode(' ', $update['message']['text']);
     $text = "tra verified   ||  ".json_encode($param);
+
+
+
     transfer($param[1],$param[2],$param[3]);
 }
 
