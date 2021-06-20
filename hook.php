@@ -34,7 +34,7 @@ $replyMsg = "Hello ".$fullName."\nYou said: ".$userMessage;
 
 
 
-$text = var_dump($update);
+$text = json_encode($update);
 
 sendMessage($my_chatId, $text);
 //sendMessage($my_chatId, "salam from server");
