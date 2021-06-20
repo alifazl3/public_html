@@ -21,7 +21,6 @@ $my_chatId = "103987269";
 
 
 
-sendMessage($my_chatId, "salam from server");
 $update = file_get_contents('php://input');
 $update = json_decode($update, true);
 $userChatId = $update["message"]["from"]["id"]?$update["message"]["from"]["id"]:null;
@@ -38,4 +37,5 @@ $replyMsg = "Hello ".$fullName."\nYou said: ".$userMessage;
 $text = $replyMsg;
 
 sendMessage($my_chatId, $text);
+sendMessage($my_chatId, "salam from server");
 ?>
