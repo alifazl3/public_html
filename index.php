@@ -324,22 +324,5 @@ $current_gc = get();
 put(json_encode($current_gc));
 
 
-$test = fopen("gc.txt", "r");
-var_dump($test);
-echo "<br>";
-$testTxt = fread($test, filesize("gc.txt"));
-var_dump($testTxt);
-echo "<br>";
-fclose($test);
-$test = fopen("gc.txt", "w");
-var_dump($test);
-echo "<br>";
-$testWrite = fwrite($test, "{\"amir\":\"0\",\"nima\":\"0\",\"hamed\":\"5\",\"shamc\":\"0\",\"razaz\":\"0\",\"alis\":\"0\",\"mehran\":\"0\",\"emad\":\"0\",\"hesan\":\"0\",\"hasan\":\"0\",\"hayan\":\"0\",\"ehsan\":\"3\",\"tarighat\":\"5\"}");
-var_dump($testWrite);
-echo "<br>";
-fclose($test);
-
-
-
 
 ?>
