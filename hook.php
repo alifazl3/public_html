@@ -37,6 +37,15 @@ if ($update['message']['text'] == "GetCurrentSt") {
     $text = $txt;
     fclose($openFile);
 }
+if (substr($update['message']['text'],0,3) == "add") {
+    $text = "add verify";
+}
+if (substr($update['message']['text'],0,3) == "sub") {
+    $text = "sub verify";
+}
+if (substr($update['message']['text'],0,3) == "tra") {
+    $text = "tra verify";
+}
 
 
 //sendMessage($update['message']['from']['id'], $update['message']['text']);
