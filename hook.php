@@ -1,57 +1,6 @@
 <?php
 
 
-function get()
-{
-    $openFile = fopen("gc.txt", "r");
-    $txt = fread($openFile, filesize("gc.txt"));
-    fclose($openFile);
-    return json_decode($txt);
-}
-
-function add($price, $whom)
-{
-    $openFile = fopen("gc.txt", "r");
-    $current_gc = fread($openFile, filesize("gc.txt"));
-    fclose($openFile);
-    $current_gc[$whom] += $price;
-    $openFile = fopen("gc.txt", "w");
-    fwrite($openFile, json_encode($current_gc));
-    fclose($openFile);
-
-
-}
-
-
-function sub($price, $whom)
-{
-
-    $openFile = fopen("gc.txt", "r");
-    $current_gc = fread($openFile, filesize("gc.txt"));
-    fclose($openFile);
-    $current_gc[$whom] = $current_gc[$whom] - $price;
-    $openFile = fopen("gc.txt", "w");
-    fwrite($openFile, json_encode($current_gc));
-    fclose($openFile);
-
-}
-
-
-function transfer($price, $who, $whom)
-{
-    $openFile = fopen("gc.txt", "r");
-    $current_gc = fread($openFile, filesize("gc.txt"));
-    fclose($openFile);
-    $current_gc[$who] = $current_gc[$who] - $price;
-    $current_gc[$whom] = $current_gc[$whom] + $price;
-    $openFile = fopen("gc.txt", "w");
-    fwrite($openFile, json_encode($current_gc));
-    fclose($openFile);
-
-
-}
-
-
 function sendMessage($chatId, $text)
 {
     $BOT_TOKEN = "1702194647:AAF1PIcfpjs4CTbqcHYRq6R32mKqpdNmRZ0";
@@ -77,7 +26,11 @@ $text = json_encode($update);
 
 
 if ($update['message']['text'] == "GetCurrentSt") {
-    $text = get();
+    $openFile = fopen("gc.txt", "r");
+    $txt = fread($openFile, filesize("gc.txt"));
+    fclose($openFile);
+
+    $text = json_decode($txt);
 
 }
 if ($update['message']['text'] == "help") {
@@ -85,7 +38,15 @@ if ($update['message']['text'] == "help") {
 }
 if (substr($update['message']['text'], 0, 3) == "add") {
     $param = explode(' ', $update['message']['text']);
-    add($param[1], $param[2]);
+
+    $openFile = fopen("gc.txt", "r");
+    $current_gc = fread($openFile, filesize("gc.txt"));
+    fclose($openFile);
+    $current_gc[$param[2]] += $param[1];
+    $openFile = fopen("gc.txt", "w");
+    fwrite($openFile, json_encode($current_gc));
+    fclose($openFile);
+
     $text = "add verify" . json_encode($param);
 }
 if (substr($update['message']['text'], 0, 3) == "sub") {
@@ -95,8 +56,21 @@ if (substr($update['message']['text'], 0, 3) == "sub") {
 }
 if (substr($update['message']['text'], 0, 3) == "tra") {
     $param = explode(' ', $update['message']['text']);
-    transfer($param[1], $param[2], $param[3]);
+
     $text = "tra verify" . json_encode($param);
+
+
+    $openFile = fopen("gc.txt", "r");
+    $current_gc = fread($openFile, filesize("gc.txt"));
+    fclose($openFile);
+
+
+    $current_gc[$who] = $current_gc[$param[2]] - $param[1];
+    $current_gc[$whom] = $current_gc[$param[3]] + $param[1];
+    $openFile = fopen("gc.txt", "w");
+    fwrite($openFile, json_encode($current_gc));
+    fclose($openFile);
+
 
 }
 
