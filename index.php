@@ -76,6 +76,8 @@ function put($inputData)
         $sql = "UPDATE gc SET coin=" . $coins . " WHERE name= '". $user."'";
 //        UPDATE gc SET coin="."$user['coin']." WHERE id=
         var_dump($user,$sql);
+        echo "<br>";
+        echo "<br>";
         if ($conn->query($sql) === TRUE) {
             echo "Record updated successfully";
         } else {
