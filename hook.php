@@ -71,13 +71,19 @@ function put($inputData)
 function transfer($price, $who, $whom)
 {
     $current_gc = get();
-    $ltext =$price.$who.$whom. json_encode($current_gc)."who => ".$current_gc[$who]."whom => $current_gc[$whom]";
 
-    $current_gc[$who] = $current_gc[$who] - $price;
-    $current_gc[$whom] = $current_gc[$whom] + $price;
+    foreach ($current_gc as $user) {
+        if ($user['name'] == $who) {
+            $user['coin'] = $user['coin'] - $price;
+        }
+        if ($user['name'] == $whom) {
+            $user['coin'] = $user['coin'] + $price;
+        }
+    }
+
+
     put($current_gc);
-    return $ltext;
-
+    return true;
 }
 
 
@@ -136,7 +142,7 @@ $text = json_encode($update);
 //}
 if (substr($update['message']['text'], 0, 3) == "tra") {
     $param = explode(' ', $update['message']['text']);
-    $text = transfer($param[1],$param[2],$param[3]);
+    $text = transfer($param[1], $param[2], $param[3]);
 //    transfer($param[1],$param[2],$param[3]);
 }
 
