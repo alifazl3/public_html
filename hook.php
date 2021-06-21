@@ -70,10 +70,8 @@ function put($inputData)
 
 function transfer($price, $who, $whom)
 {
-    $ltext='';
-    $ltext+=$price.$who.$whom;
     $current_gc = get();
-    $ltext += json_encode($current_gc)."who => ".$current_gc[$who]."whom => $current_gc[$whom]";
+    $ltext =$price.$who.$whom. json_encode($current_gc)."who => ".$current_gc[$who]."whom => $current_gc[$whom]";
 
     $current_gc[$who] = $current_gc[$who] - $price;
     $current_gc[$whom] = $current_gc[$whom] + $price;
@@ -138,7 +136,7 @@ $text = json_encode($update);
 //}
 if (substr($update['message']['text'], 0, 3) == "tra") {
     $param = explode(' ', $update['message']['text']);
-    $text = "tra verified   ||  ".json_encode($param).transfer($param[1],$param[2],$param[3]);
+    $text = transfer($param[1],$param[2],$param[3]);
 //    transfer($param[1],$param[2],$param[3]);
 }
 
