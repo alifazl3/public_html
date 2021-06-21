@@ -7,8 +7,8 @@ $password = "password";
 $dbname = "evig";
 
 if (isset($_GET['json'])) {
-    put(urldecode(json_decode($_GET['json'])));
-    var_dump(urldecode(json_decode($_GET['json'])));
+    put(json_decode($_GET['json']));
+    var_dump(json_decode($_GET['json']));
     exit;
 //    header("Location: index.php");
 }
@@ -247,8 +247,8 @@ $current_gc = get();
         var data = {};
         var table = document.getElementById("myTable");
         for (var i = table.rows.length - 1; i > 0; i--) {
-            var key = table.rows[i].childNodes[0].innerText;
-            var value = table.rows[i].childNodes[1].innerText;
+            var key = table.rows[i].childNodes[1].innerText;
+            var value = table.rows[i].childNodes[2].innerText;
             data[key] = value;
         }
         console.log(data);
