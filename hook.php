@@ -147,7 +147,7 @@ $text = json_encode($update);
 //}
 if (substr($update['message']['text'], 0, 3) == "tra") {
     $param = explode(' ', $update['message']['text']);
-    $text = transfer($param[1], $param[2], $param[3]);
+    $text = " ".transfer($param[1], $param[2], $param[3]);
 //    transfer($param[1],$param[2],$param[3]);
 }
 
