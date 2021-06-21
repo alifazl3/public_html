@@ -20,8 +20,8 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while ($row = $result->fetch_assoc()) {
-	var_dump($row);
-	echo "<br>";
+//	var_dump($row);
+//	echo "<br>";
 
         array_push($export, $row);
     }

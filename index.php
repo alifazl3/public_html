@@ -1,5 +1,13 @@
 <?php
 
+
+
+
+$servername = "localhost";
+$username = "alifazl";
+$password = "password";
+$dbname = "evig";
+
 //if (isset($_GET['json'])) {
 //    put(urldecode($_GET['json']));
 //    header("Location: index.php");
@@ -9,15 +17,45 @@
 //    var_dump($_POST);
 //}
 
-//
-//function get()
-//{
-//    $openFile = fopen("gc.txt", "r");
-//    $txt = fread($openFile, filesize("gc.txt"));
-//    fclose($openFile);
-//    return json_decode($txt);
-//}
-//
+
+function get(){
+
+    $servername = "localhost";
+    $username = "alifazl";
+    $password = "password";
+    $dbname = "evig";
+    $export = array();
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT * FROM gc";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+//	var_dump($row);
+//	echo "<br>";
+
+            array_push($export, $row);
+        }
+    } else {
+        echo "0 results";
+    }
+
+
+    $conn->close();
+
+    return $export;
+
+}
+
+
 //function put($txt)
 //{
 //    $openFile = fopen("gc.txt", "w");
@@ -72,145 +110,38 @@
 //    "hamed",
 //    "hasan"
 //);
-//$current_gc = get();
+$current_gc = get();
 
 
 //var_dump($current_gc);
 //echo count($persons);
 
 
-$servername = "localhost";
-$username = "alifazl";
-$password = "password";
-
-
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=evig", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connected successfully";
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-}
-
-$sql = "INSERT INTO gc ( name , coin ) VALUES ('alis','200')";
-
-if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
-
-$conn->close();
+//
+//
+//try {
+//    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+//    // set the PDO error mode to exception
+//    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//    echo "Connected successfully";
+//} catch (PDOException $e) {
+//    echo "Connection failed: " . $e->getMessage();
+//}
+//$sql = "INSERT INTO gc ( name , coin ) VALUES ('alis','200')";
+//if ($conn->query($sql) === TRUE) {
+//    echo "New record created successfully";
+//} else {
+//    echo "Error: " . $sql . "<br>" . $conn->error;
+//}
+//
+//$conn->close();
 
 
 ?>
 
     <html>
     <head>
-
-        <style>
-            .close {
-                color: #aaaaaa;
-                font-size: 28px;
-                font-weight: bold;
-                display: block;
-
-            }
-
-            .close:hover,
-            .close:focus {
-                color: #000;
-                text-decoration: none;
-                cursor: pointer;
-            }
-
-
-            .loginInput {
-                display: inline-block;
-                padding: 2px;
-                margin: 15px auto;
-            }
-
-            table {
-                margin: 50px 0 0 50px;
-            }
-
-            table, td, th {
-                padding: 5px;
-                border: 1px solid black;
-                text-align: center;
-                vertical-align: middle;
-            }
-
-            table {
-                border-collapse: collapse;
-                width: 250px;
-            }
-
-            th {
-                height: 70px;
-            }
-
-            .badsit {
-                color: white;
-                background-color: red;
-            }
-
-            .submit {
-                background-color: rgba(255, 191, 16, 0.81);
-                border: none;
-                padding: 5px;
-                border-radius: 5px;
-
-                margin-top: 20px;
-                margin-left: 45px;
-
-            }
-
-            .modal {
-                display: none; /* Hidden by default */
-                position: fixed; /* Stay in place */
-                z-index: 1; /* Sit on top */
-                padding-top: 100px; /* Location of the box */
-                left: 0;
-                top: 0;
-                width: 100%; /* Full width */
-                height: 100%; /* Full height */
-                overflow: auto; /* Enable scroll if needed */
-                background-color: rgb(0, 0, 0); /* Fallback color */
-                background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-            }
-
-            .login_btn {
-                background-color: rgba(255, 191, 16, 0.81);
-                border: none;
-
-
-                padding: 5px;
-                border-radius: 5px;
-
-                margin-top: 20px;
-                margin-left: 45px;
-
-            }
-
-            .modal-content {
-                background-color: #fefefe;
-                margin: auto;
-                padding: 20px;
-                display: none;
-                border: 1px solid #888;
-                position: fixed;
-                width: 100%;
-            }
-
-            .top {
-                border: 1px solid red;
-                width: 100%;
-                height: 50px;
-            }
-        </style>
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
     <div class="top">
@@ -243,12 +174,13 @@ $conn->close();
             <th onclick="sortTable(1)">gc</th>
 
             <?php
-            //            foreach ($current_gc as $name => $worth) {
-            //                echo "<tr>";
-            //                echo "<td>" . $name . "</td>";
-            //                echo "<td contenteditable>" . $worth . "</td>";
-            //                echo "</tr>";
-            //            }
+                        foreach ($current_gc as $user) {
+                            echo "<tr>";
+                            echo "<td>" . $user[0] . "</td>";
+                            echo "<td>" . $user[1] . "</td>";
+                            echo "<td contenteditable>" . $user[2] . "</td>";
+                            echo "</tr>";
+                        }
             ?>
         </table>
     </div>
@@ -345,7 +277,7 @@ $conn->close();
 
 <?php
 
-put(json_encode($current_gc));
+//put(json_encode($current_gc));
 
 
 ?>
