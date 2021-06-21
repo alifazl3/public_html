@@ -8,9 +8,7 @@ $dbname = "evig";
 
 if (isset($_GET['json'])) {
     put(json_decode($_GET['json']));
-    var_dump(json_decode($_GET['json']));
-    exit;
-//    header("Location: index.php");
+    header("Location: index.php");
 }
 
 //if (isset($_POST['user'])) {
@@ -67,19 +65,13 @@ function put($inputData)
     foreach ($inputData as $user => $coins) {
 
         $conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
 
 
         $sql = "UPDATE gc SET coin=" . $coins . " WHERE name= '" . $user . "'";
-//        UPDATE gc SET coin="."$user['coin']." WHERE id=
-        var_dump($user, $sql);
-        echo "<br>";
-        echo "<br>";
         if ($conn->query($sql) === TRUE) {
-            echo "Record updated successfully";
         } else {
             echo "Error updating record: " . $conn->error;
         }
