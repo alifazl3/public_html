@@ -88,7 +88,7 @@ function transfer($price, $who, $whom)
 
 
     put($current_gc);
-    return $test;
+    return $test.json_encode($current_gc);
 }
 
 
