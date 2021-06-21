@@ -93,8 +93,7 @@ try {
     echo "Connection failed: " . $e->getMessage();
 }
 
-$sql = "INSERT INTO gc ('name' , 'coin')
-VALUES ('alis', 200)";
+$sql = "INSERT INTO gc ( name , coin ) VALUES ('alis','200')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
