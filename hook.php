@@ -71,24 +71,24 @@ function put($inputData)
 function transfer($price, $who, $whom)
 {
     $current_gc = get();
+    $test = json_encode($current_gc);
 
 
-    $t = '';
     foreach ($current_gc as $user) {
         if ($user['name'] == $who) {
             $user['coin'] = $user['coin'] - $price;
-            $t += 'who: '.json_encode($user);
+            $test += 'who: '.json_encode($user);
 
         }
         if ($user['name'] == $whom) {
             $user['coin'] = $user['coin'] + $price;
-            $t += 'whom: '.json_encode($user);
+            $test += 'whom: '.json_encode($user);
         }
     }
 
 
     put($current_gc);
-    return $t;
+    return $test;
 }
 
 
