@@ -64,18 +64,18 @@ function put($inputData)
     $username = "alifazl";
     $password = "password";
     $dbname = "evig";
+    foreach ($inputData as $user => $coins) {
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+        $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
 
 
-    foreach ($inputData as $user => $coins ){
-        $sql = "UPDATE gc SET coin=" . $coins . " WHERE name= '". $user."'";
+        $sql = "UPDATE gc SET coin=" . $coins . " WHERE name= '" . $user . "'";
 //        UPDATE gc SET coin="."$user['coin']." WHERE id=
-        var_dump($user,$sql);
+        var_dump($user, $sql);
         echo "<br>";
         echo "<br>";
         if ($conn->query($sql) === TRUE) {
