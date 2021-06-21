@@ -3,17 +3,69 @@
 
 function get()
 {
-    $openFile = fopen("gc.txt", "r");
-    $txt = fread($openFile, filesize("gc.txt"));
-    fclose($openFile);
-    return json_decode($txt);
+
+    $servername = "localhost";
+    $username = "alifazl";
+    $password = "password";
+    $dbname = "evig";
+    $export = array();
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT * FROM gc";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+//	var_dump($row);
+//	echo "<br>";
+
+            array_push($export, $row);
+        }
+    } else {
+        echo "0 results";
+    }
+
+
+    $conn->close();
+
+    return $export;
+
 }
 
-function put($txt)
+
+function put($inputData)
 {
-    $openFile = fopen("gc.txt", "w");
-    fwrite($openFile, $txt);
-    fclose($openFile);
+
+    $servername = "localhost";
+    $username = "alifazl";
+    $password = "password";
+    $dbname = "evig";
+    foreach ($inputData as $user => $coins) {
+
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+
+        $sql = "UPDATE gc SET coin=" . $coins . " WHERE name= '" . $user . "'";
+        if ($conn->query($sql) === TRUE) {
+        } else {
+            echo "Error updating record: " . $conn->error;
+        }
+
+        $conn->close();
+    }
+
+
+//
 }
 
 function transfer($price, $who, $whom)
@@ -22,7 +74,7 @@ function transfer($price, $who, $whom)
     $current_gc = get();
     $current_gc[$who] = $current_gc[$who] - $price;
     $current_gc[$whom] = $current_gc[$whom] + $price;
-    put(json_encode($current_gc));
+    put($current_gc);
 
 }
 
