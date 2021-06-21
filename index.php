@@ -72,10 +72,10 @@ function put($inputData)
     }
 
 
-    foreach ($inputData as $user) {
-        $sql = "UPDATE gc SET coin=" . $user['coin'] . " WHERE name=" . $user['name'];
+    foreach ($inputData as $user => $coins ){
+        $sql = "UPDATE gc SET coin=" . $coins . " WHERE name=" . $user;
 //        UPDATE gc SET coin="."$user['coin']." WHERE id=
-
+        var_dump($user,$sql);
         if ($conn->query($sql) === TRUE) {
             echo "Record updated successfully";
         } else {
