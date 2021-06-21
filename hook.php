@@ -72,18 +72,23 @@ function transfer($price, $who, $whom)
 {
     $current_gc = get();
 
+
+    $t = '';
     foreach ($current_gc as $user) {
         if ($user['name'] == $who) {
             $user['coin'] = $user['coin'] - $price;
+            $t += 'who: '.json_encode($user);
+
         }
         if ($user['name'] == $whom) {
             $user['coin'] = $user['coin'] + $price;
+            $t += 'whom: '.json_encode($user);
         }
     }
 
 
     put($current_gc);
-    return true;
+    return $t;
 }
 
 
