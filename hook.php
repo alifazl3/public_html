@@ -74,25 +74,26 @@ function transfer($price, $who, $whom)
 //    $test = json_encode($current_gc);
 
 
-    foreach ($current_gc as $user) {
-        if ($user['name'] == $who) {
-            $test = 'who: ' . json_encode($user);
-            $user['coin'] = $user['coin'] - $price;
+    for ($i = 0; $i < count($current_gc); $i++) {
+
+        if ($current_gc[$i]['name'] == $who) {
+            $test = 'who: ' . json_encode($current_gc[$i]);
+            $current_gc[$i]['coin'] = $current_gc[$i]['coin'] - $price;
             break;
         }
 
     }
-    foreach ($current_gc as $user) {
-        if ($user['name'] == $whom) {
-//            $test += 'whom: ' . json_encode($user);
-            $user['coin'] = $user['coin'] + $price;
+    for ($i = 0; $i < count($current_gc); $i++) {
+        if ($current_gc[$i]['name'] == $whom) {
+//            $test = 'whom: ' . json_encode($current_gc[$i]);
+            $current_gc[$i]['coin'] = $current_gc[$i]['coin'] + $price;
             break;
         }
     }
 
 
     put($current_gc);
-    return $test;
+    return json_encode($current_gc);
 }
 
 
