@@ -1,83 +1,108 @@
 <?php
-//echo "hello world";
 
-if (isset($_GET['json'])) {
-    put(urldecode($_GET['json']));
-    header("Location: index.php");
-}
+//if (isset($_GET['json'])) {
+//    put(urldecode($_GET['json']));
+//    header("Location: index.php");
+//}
+//
+//if (isset($_POST['user'])) {
+//    var_dump($_POST);
+//}
 
-if (isset($_POST['user'])) {
-    var_dump($_POST);
-}
+//
+//function get()
+//{
+//    $openFile = fopen("gc.txt", "r");
+//    $txt = fread($openFile, filesize("gc.txt"));
+//    fclose($openFile);
+//    return json_decode($txt);
+//}
+//
+//function put($txt)
+//{
+//    $openFile = fopen("gc.txt", "w");
+//    fwrite($openFile, $txt);
+//    fclose($openFile);
+//}
+//
+//
+//function add($price, $whom)
+//{
+//    $current_gc = get();
+//    $current_gc[$whom]+=$price;
+//    put(json_encode($current_gc));
+//
+//}
+//
+//
+//function sub($price, $whom)
+//{
+//    $current_gc = get();
+//    $current_gc[$whom]=$current_gc[$whom]-$price;
+//    put(json_encode($current_gc));
+//}
+//
+//
+//function transfer($price, $who, $whom)
+//{
+//
+//    $current_gc = get();
+//    $current_gc[$who]=$current_gc[$who]-$price;
+//    $current_gc[$whom]=$current_gc[$whom]+$price;
+//    put(json_encode($current_gc));
+//
+//}
+//
+//
 
-
-function get()
-{
-    $openFile = fopen("gc.txt", "r");
-    $txt = fread($openFile, filesize("gc.txt"));
-    fclose($openFile);
-    return json_decode($txt);
-}
-
-function put($txt)
-{
-    $openFile = fopen("gc.txt", "w");
-    fwrite($openFile, $txt);
-    fclose($openFile);
-}
-
-
-function add($price, $whom)
-{
-    $current_gc = get();
-    $current_gc[$whom]+=$price;
-    put(json_encode($current_gc));
-
-}
-
-
-function sub($price, $whom)
-{
-    $current_gc = get();
-    $current_gc[$whom]=$current_gc[$whom]-$price;
-    put(json_encode($current_gc));
-}
-
-
-function transfer($price, $who, $whom)
-{
-
-    $current_gc = get();
-    $current_gc[$who]=$current_gc[$who]-$price;
-    $current_gc[$whom]=$current_gc[$whom]+$price;
-    put(json_encode($current_gc));
-
-}
-
-
-
-
-
-$persons = array(
-    "shamc",
-    "ehsan",
-    "amir",
-    "nima",
-    "emad",
-    "mehran",
-    "hayan",
-    "razaz",
-    "alis",
-    "tarighat",
-    "hesan",
-    "hamed",
-    "hasan"
-);
-$current_gc = get();
+//
+//
+//$persons = array(
+//    "shamc",
+//    "ehsan",
+//    "amir",
+//    "nima",
+//    "emad",
+//    "mehran",
+//    "hayan",
+//    "razaz",
+//    "alis",
+//    "tarighat",
+//    "hesan",
+//    "hamed",
+//    "hasan"
+//);
+//$current_gc = get();
 
 
 //var_dump($current_gc);
 //echo count($persons);
+
+
+$servername = "localhost";
+$username = "alifazl";
+$password = "password";
+
+
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=evig", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Connected successfully";
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
+
+$sql = "INSERT INTO gc ('name' , 'coin')
+VALUES ('alis', 200)";
+
+if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+$conn->close();
 
 
 ?>
@@ -219,12 +244,12 @@ $current_gc = get();
             <th onclick="sortTable(1)">gc</th>
 
             <?php
-            foreach ($current_gc as $name => $worth) {
-                echo "<tr>";
-                echo "<td>" . $name . "</td>";
-                echo "<td contenteditable>" . $worth . "</td>";
-                echo "</tr>";
-            }
+            //            foreach ($current_gc as $name => $worth) {
+            //                echo "<tr>";
+            //                echo "<td>" . $name . "</td>";
+            //                echo "<td contenteditable>" . $worth . "</td>";
+            //                echo "</tr>";
+            //            }
             ?>
         </table>
     </div>
@@ -322,7 +347,6 @@ $current_gc = get();
 <?php
 
 put(json_encode($current_gc));
-
 
 
 ?>
