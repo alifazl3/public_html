@@ -120,15 +120,12 @@ $update = json_decode($update, true);
 
 $text = json_encode($update);
 
-//
-//if ($update['message']['text'] == "GetCurrentSt") {
-//    $openFile = fopen("gc.txt", "r");
-//    $txt = fread($openFile, filesize("gc.txt"));
-//    fclose($openFile);
-//
-//    $text = json_decode($txt);
-//
-//}
+
+if ($update['message']['text'] == "GetCurrentSt") {
+
+    $text = get();
+
+}
 //if ($update['message']['text'] == "help") {
 //    $text = "GetCurrentSt : get current gc   add: add price who  sub: sub price who transfer: tra price who whom";
 //}
