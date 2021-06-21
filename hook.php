@@ -123,7 +123,7 @@ $text = json_encode($update);
 
 if ($update['message']['text'] == "GetCurrentSt") {
 
-    $text = get();
+    $text = json_encode(get());
 
 }
 //if ($update['message']['text'] == "help") {
