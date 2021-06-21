@@ -141,7 +141,7 @@ $current_gc = get();
 
     <html>
     <head>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
     <div class="top">
@@ -176,9 +176,9 @@ $current_gc = get();
             <?php
                         foreach ($current_gc as $user) {
                             echo "<tr>";
-                            echo "<td>" . $user[0] . "</td>";
-                            echo "<td>" . $user[1] . "</td>";
-                            echo "<td contenteditable>" . $user[2] . "</td>";
+                            echo "<td>" . $user['id'] . "</td>";
+                            echo "<td>" . $user['name'] . "</td>";
+                            echo "<td contenteditable>" . $user['coin'] . "</td>";
                             echo "</tr>";
                         }
             ?>
