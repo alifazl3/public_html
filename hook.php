@@ -48,12 +48,12 @@ function put($inputData)
     $password = "password";
     $dbname = "evig";
 
-    $out = "start puting ".json_encode($inputData).$inputData."\n\n\n";
+    $out = "start puting " . json_encode($inputData) . $inputData . "\n\n\n";
 
 
     foreach ($inputData as $userData) {
 
-        $out =$out . "inLoop: ";
+        $out = $out . "inLoop: ";
 
         $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -62,15 +62,15 @@ function put($inputData)
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $out =$out . $conn;
+        $out = $out . $conn;
 
         $sql = "UPDATE gc SET coin=" . $userData['coins'] . " WHERE name= '" . $userData['user'] . "'";
         if ($conn->query($sql) === TRUE) {
 
-            $out =$out . "  SUCSSES  " . $sql . "--|--\n";
+            $out = $out . "  SUCSSES  " . $sql . "--|--\n";
 
         } else {
-            $out =$out . "Error updating record: " . $conn->error;
+            $out = $out . "Error updating record: " . $conn->error;
         }
 
         $conn->close();
@@ -142,9 +142,11 @@ if (substr($update['message']['text'], 0, 6) == "update") {
     $param = explode(' ', $update['message']['text']);
     $json = $param[1];
 
-    $text = json_encode($param)."  ".$json;
-    $text = $text.put(json_decode($json));
-    $text = $text." END";
+    $json = "[{\"id\":\"1\",\"name\":\"alis\",\"coin\":-700},{\"id\":\"2\",\"name\":\"shamc\",\"coin\":\"32\"},{\"id\":\"3\",\"name\":\"ehsan\",\"coin\":700},{\"id\":\"4\",\"name\":\"hayan\",\"coin\":\"4\"},{\"id\":\"5\",\"name\":\"nima\",\"coin\":\"324\"},{\"id\":\"6\",\"name\":\"emad\",\"coin\":\"324\"},{\"id\":\"7\",\"name\":\"hasan\",\"coin\":\"3\"},{\"id\":\"8\",\"name\":\"hesan\",\"coin\":\"3232\"},{\"id\":\"9\",\"name\":\"hamed\",\"coin”:”2323”},{“id\":\"10\",\"name\":\"tarighat\",\"coin”:”2323”},{“id\":\"11\",\"name\":\"mehran\",\"coin”:”2323”},{“id\":\"12\",\"name\":\"razaz\",\"coin”:”3232”},{“id\":\"13\",\"name\":\"amir\",\"coin”:”3232”}]";
+    
+    $text = json_encode($param) . "  " . $json;
+    $text = $text . put(json_decode($json));
+    $text = $text . " END";
 
 }
 
