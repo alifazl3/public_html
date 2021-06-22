@@ -142,7 +142,8 @@ if (substr($update['message']['text'], 0, 6) == "update") {
     $param = explode(' ', $update['message']['text']);
     $json = $param[1];
 
-    $text = put(json_decode($json));
+    $text = $param."  ".json_encode($param)."  ".$json;
+    $text = $text.put(json_decode($json));
     $text = $text." END";
 
 }
