@@ -61,7 +61,7 @@ function put($inputData)
         $sql = "UPDATE gc SET coin=" . $coins . " WHERE name= '" . $user . "'";
         if ($conn->query($sql) === TRUE) {
         } else {
-            $out += "Error updating record: " . $conn->error;
+            $out =$out . "Error updating record: " . $conn->error;
         }
 
         $conn->close();
@@ -134,6 +134,7 @@ if (substr($update['message']['text'], 0, 6) == "update") {
     $json = $param[1];
 
     $text = put(json_decode($json));
+    $text = $text."END";
 
 }
 
