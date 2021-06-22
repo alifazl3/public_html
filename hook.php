@@ -143,10 +143,11 @@ if (substr($update['message']['text'], 0, 6) == "update") {
     $json = $param[1];
 
     $json = "[{\"id\":\"1\",\"name\":\"alis\",\"coin\":-700},{\"id\":\"2\",\"name\":\"shamc\",\"coin\":\"32\"},{\"id\":\"3\",\"name\":\"ehsan\",\"coin\":700},{\"id\":\"4\",\"name\":\"hayan\",\"coin\":\"4\"},{\"id\":\"5\",\"name\":\"nima\",\"coin\":\"324\"},{\"id\":\"6\",\"name\":\"emad\",\"coin\":\"324\"},{\"id\":\"7\",\"name\":\"hasan\",\"coin\":\"3\"},{\"id\":\"8\",\"name\":\"hesan\",\"coin\":\"3232\"},{\"id\":\"9\",\"name\":\"hamed\",\"coin”:”2323”},{“id\":\"10\",\"name\":\"tarighat\",\"coin”:”2323”},{“id\":\"11\",\"name\":\"mehran\",\"coin”:”2323”},{“id\":\"12\",\"name\":\"razaz\",\"coin”:”3232”},{“id\":\"13\",\"name\":\"amir\",\"coin”:”3232”}]";
-    
-    $text = json_encode($param) . "  " . $json;
-    $text = $text . put(json_decode($json));
-    $text = $text . " END";
+
+//    $text = json_encode($param) . "  " . $json;
+//    $text = $text . put(json_decode($json));
+//    $text = $text . " END";
+    $text = $json . " END";
 
 }
 
