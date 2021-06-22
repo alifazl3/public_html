@@ -57,9 +57,11 @@ function put($inputData)
             die("Connection failed: " . $conn->connect_error);
         }
 
-
         $sql = "UPDATE gc SET coin=" . $coins . " WHERE name= '" . $user . "'";
         if ($conn->query($sql) === TRUE) {
+
+            $out =$out . "  SUCSSES  " . $sql . "--|--\n";
+
         } else {
             $out =$out . "Error updating record: " . $conn->error;
         }
