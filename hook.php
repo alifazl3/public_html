@@ -65,7 +65,8 @@ function put($inputData)
     }
 
 
-//
+
+
 }
 
 function transfer($price, $who, $whom)
@@ -129,7 +130,8 @@ if ($update['message']['text'] == "GetCurrentSt") {
 if (substr($update['message']['text'],0,6) == "update") {
     $param = explode(' ', $update['message']['text']);
     $json = $param[1];
-    $text = json_encode(get());
+
+    $text = put(json_decode($json));
 
 }
 
