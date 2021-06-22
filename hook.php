@@ -126,6 +126,15 @@ if ($update['message']['text'] == "GetCurrentSt") {
     $text = json_encode(get());
 
 }
+if (substr($update['message']['text'],0,6) == "update") {
+    $param = explode(' ', $update['message']['text']);
+    $json = $param[1];
+    $text = json_encode(get());
+
+}
+
+
+
 //if ($update['message']['text'] == "help") {
 //    $text = "GetCurrentSt : get current gc   add: add price who  sub: sub price who transfer: tra price who whom";
 //}
