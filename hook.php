@@ -48,7 +48,7 @@ function put($inputData)
     $password = "password";
     $dbname = "evig";
 
-    $out = "";
+    $out = "start puting";
 
     foreach ($inputData as $user => $coins) {
 
@@ -56,6 +56,8 @@ function put($inputData)
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
+
+        $out =$out . $conn;
 
         $sql = "UPDATE gc SET coin=" . $coins . " WHERE name= '" . $user . "'";
         if ($conn->query($sql) === TRUE) {
