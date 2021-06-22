@@ -48,7 +48,7 @@ function put($inputData)
     $password = "password";
     $dbname = "evig";
 
-    $out = "start puting array: ".json_encode($inputData);
+    $out = "start puting ".json_encode($inputData).$inputData."\n\n\n";
 
 
     foreach ($inputData as $userData) {
@@ -142,7 +142,7 @@ if (substr($update['message']['text'], 0, 6) == "update") {
     $param = explode(' ', $update['message']['text']);
     $json = $param[1];
 
-    $text = $param."  ".json_encode($param)."  ".$json;
+    $text = json_encode($param)."  ".$json;
     $text = $text.put(json_decode($json));
     $text = $text." END";
 
