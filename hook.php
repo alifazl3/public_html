@@ -48,18 +48,23 @@ function put($inputData)
     $password = "password";
     $dbname = "evig";
 
-    $out = "start puting";
+    $out = "start puting array: ".json_encode($inputData);
 
-    foreach ($inputData as $user => $coins) {
+
+    foreach ($inputData as $userData) {
+
+        $out =$out . "inLoop: ";
 
         $conn = new mysqli($servername, $username, $password, $dbname);
+
+
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
 
         $out =$out . $conn;
 
-        $sql = "UPDATE gc SET coin=" . $coins . " WHERE name= '" . $user . "'";
+        $sql = "UPDATE gc SET coin=" . $userData['coins'] . " WHERE name= '" . $userData['user'] . "'";
         if ($conn->query($sql) === TRUE) {
 
             $out =$out . "  SUCSSES  " . $sql . "--|--\n";
@@ -138,7 +143,7 @@ if (substr($update['message']['text'], 0, 6) == "update") {
     $json = $param[1];
 
     $text = put(json_decode($json));
-    $text = $text."END";
+    $text = $text." END";
 
 }
 
