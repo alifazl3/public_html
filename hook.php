@@ -47,6 +47,9 @@ function put($inputData)
     $username = "alifazl";
     $password = "password";
     $dbname = "evig";
+
+    $out = "";
+
     foreach ($inputData as $user => $coins) {
 
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -58,15 +61,14 @@ function put($inputData)
         $sql = "UPDATE gc SET coin=" . $coins . " WHERE name= '" . $user . "'";
         if ($conn->query($sql) === TRUE) {
         } else {
-            echo "Error updating record: " . $conn->error;
+            $out += "Error updating record: " . $conn->error;
         }
 
         $conn->close();
     }
 
 
-
-
+    return $out;
 }
 
 function transfer($price, $who, $whom)
@@ -127,14 +129,13 @@ if ($update['message']['text'] == "GetCurrentSt") {
     $text = json_encode(get());
 
 }
-if (substr($update['message']['text'],0,6) == "update") {
+if (substr($update['message']['text'], 0, 6) == "update") {
     $param = explode(' ', $update['message']['text']);
     $json = $param[1];
 
     $text = put(json_decode($json));
 
 }
-
 
 
 //if ($update['message']['text'] == "help") {
