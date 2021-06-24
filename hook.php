@@ -122,7 +122,6 @@ function sendMessage($chatId, $text)
 }
 
 
-
 $update = file_get_contents('php://input');
 $update = json_decode($update, true);
 
@@ -137,16 +136,13 @@ if ($update['message']['text'] == "GetCurrentSt") {
 }
 
 
-
-
 if (substr($update['message']['text'], 0, 6) == "update") {
     $param = explode(' ', $update['message']['text']);
+
     $current_gc = get();
 
-
-    $text = "json: current_gc ".json_encode($current_gc)."\n\n"."param: ".json_encode($param);
-
-
+    $text = json_encode($param);
+//    $text = "json: current_gc ".json_encode($current_gc)."\n\n"."param: ".json_encode($param);
 
 
 }
@@ -173,18 +169,18 @@ if (substr($update['message']['text'], 0, 6) == "update") {
 //    sub($param[1], $param[2]);
 //    $text = "sub verify" . json_encode($param);
 //}
-if (substr($update['message']['text'], 0, 3) == "tra") {
-    $param = explode(' ', $update['message']['text']);
-    $current_gc = get();
-
-
-    $text = "json: current_gc ".json_encode($current_gc)."\n\n"."param: ".json_encode($param);
-
-
-
-//    $text = $param[1] . $param[2] . $param[3] . transfer($param[1], $param[2], $param[3]);
-//    transfer($param[1],$param[2],$param[3]);
-}
+//if (substr($update['message']['text'], 0, 3) == "tra") {
+//    $param = explode(' ', $update['message']['text']);
+//    $current_gc = get();
+//
+//
+//    $text = "json: current_gc ".json_encode($current_gc)."\n\n"."param: ".json_encode($param);
+//
+//
+//
+////    $text = $param[1] . $param[2] . $param[3] . transfer($param[1], $param[2], $param[3]);
+////    transfer($param[1],$param[2],$param[3]);
+//}
 
 
 //sendMessage($update['message']['from']['id'], $update['message']['text']);
