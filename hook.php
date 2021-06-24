@@ -111,7 +111,6 @@ function transfer($price, $who, $whom)
 
 function sendMessage($chatId, $text)
 {
-//    $BOT_TOKEN = "1702194647:AAF1PIcfpjs4CTbqcHYRq6R32mKqpdNmRZ0";
     $BOT_TOKEN = "1702194647:AAEAkt7LFD-9OCikmb1kNtgL67gIm7c-FnE";
 
     $ch = curl_init();
@@ -122,9 +121,6 @@ function sendMessage($chatId, $text)
     return $conn;
 }
 
-//1702194647:AAEjqWLqtMgzHJ9ShyEzReDBIj3jw9tc7qA
-$BOT_TOKEN = "1702194647:AAEAkt7LFD-9OCikmb1kNtgL67gIm7c-FnE";
-//$my_chatId = "103987269";
 
 
 $update = file_get_contents('php://input');
@@ -176,8 +172,13 @@ if (substr($update['message']['text'], 0, 6) == "update") {
 //}
 if (substr($update['message']['text'], 0, 3) == "tra") {
     $param = explode(' ', $update['message']['text']);
+    $current_gc = get();
 
-    $text = json_encode($param);
+
+    $text = $current_gc."\n\n".json_encode($param);
+
+
+
 //    $text = $param[1] . $param[2] . $param[3] . transfer($param[1], $param[2], $param[3]);
 //    transfer($param[1],$param[2],$param[3]);
 }
