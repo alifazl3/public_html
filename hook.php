@@ -176,7 +176,9 @@ if (substr($update['message']['text'], 0, 6) == "update") {
 //}
 if (substr($update['message']['text'], 0, 3) == "tra") {
     $param = explode(' ', $update['message']['text']);
-    $text = $param[1] . $param[2] . $param[3] . transfer($param[1], $param[2], $param[3]);
+
+    $text = json_encode($param);
+//    $text = $param[1] . $param[2] . $param[3] . transfer($param[1], $param[2], $param[3]);
 //    transfer($param[1],$param[2],$param[3]);
 }
 
