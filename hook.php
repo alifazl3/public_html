@@ -111,7 +111,8 @@ function transfer($price, $who, $whom)
 
 function sendMessage($chatId, $text)
 {
-    $BOT_TOKEN = "1702194647:AAF1PIcfpjs4CTbqcHYRq6R32mKqpdNmRZ0";
+//    $BOT_TOKEN = "1702194647:AAF1PIcfpjs4CTbqcHYRq6R32mKqpdNmRZ0";
+    $BOT_TOKEN = "1702194647:AAEAkt7LFD-9OCikmb1kNtgL67gIm7c-FnE";
 
     $ch = curl_init();
 
