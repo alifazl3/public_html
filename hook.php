@@ -175,7 +175,7 @@ if (substr($update['message']['text'], 0, 3) == "tra") {
     $current_gc = get();
 
 
-    $text = $current_gc."\n\n".json_encode($param);
+    $text = json_encode($current_gc)."\n\n".json_encode($param);
 
 
 
