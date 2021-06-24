@@ -10,9 +10,7 @@ function get()
     $dbname = "evig";
     $export = array();
 
-    // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
@@ -21,11 +19,7 @@ function get()
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        // output data of each row
         while ($row = $result->fetch_assoc()) {
-//	var_dump($row);
-//	echo "<br>";
-
             array_push($export, $row);
         }
     } else {
@@ -124,8 +118,6 @@ function sendMessage($chatId, $text)
 
 $update = file_get_contents('php://input');
 $update = json_decode($update, true);
-
-
 $text = json_encode($update);
 
 
@@ -141,7 +133,10 @@ if (substr($update['message']['text'], 0, 6) == "update") {
 
     $current_gc = get();
 
-    $text = json_encode($current_gc)."\n\\n\n".json_encode($param);
+
+    $text = json_encode(get());
+
+//    $text = json_encode($current_gc)."\n\\n\n".json_encode($param);
 //    $text = "json: current_gc ".json_encode($current_gc)."\n\n"."param: ".json_encode($param);
 
 
@@ -183,7 +178,5 @@ if (substr($update['message']['text'], 0, 6) == "update") {
 //}
 
 
-//sendMessage($update['message']['from']['id'], $update['message']['text']);
 sendMessage($update['message']['from']['id'], $text);
-//sendMessage($my_chatId, "salam from server");
 ?>
