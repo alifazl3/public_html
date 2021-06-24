@@ -134,7 +134,7 @@ if (substr($update['message']['text'], 0, 6) == "update") {
     $current_gc = get();
 
 
-    $text = json_encode(get());
+    $text = json_encode($current_gc);
 
 //    $text = json_encode($current_gc)."\n\\n\n".json_encode($param);
 //    $text = "json: current_gc ".json_encode($current_gc)."\n\n"."param: ".json_encode($param);
