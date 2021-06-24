@@ -121,8 +121,8 @@ function sendMessage($chatId, $text)
     return $conn;
 }
 
-
-$BOT_TOKEN = "1702194647:AAF1PIcfpjs4CTbqcHYRq6R32mKqpdNmRZ0";
+//1702194647:AAEjqWLqtMgzHJ9ShyEzReDBIj3jw9tc7qA
+$BOT_TOKEN = "1702194647:AAEjqWLqtMgzHJ9ShyEzReDBIj3jw9tc7qA";
 $my_chatId = "103987269";
 
 
