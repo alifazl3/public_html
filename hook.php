@@ -41,7 +41,7 @@ function put($inputData)
     $username = "alifazl";
     $password = "password";
     $dbname = "evig";
-    $exit = "";
+    $exit = "start: ";
     $num = 0;
     foreach ($inputData as $user => $coins) {
 
