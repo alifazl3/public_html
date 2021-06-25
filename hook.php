@@ -41,11 +41,11 @@ function put($inputData)
     $username = "alifazl";
     $password = "password";
     $dbname = "evig";
-//    $exit = "";
-//    $num = 0;
+    $exit = "";
+    $num = 0;
     foreach ($inputData as $user => $coins) {
 
-//        $exit = $exit . "%0A%0A" . $num ."-". $user . " => " .$coins . "%0A";
+        $exit = $exit . "%0A%0A" . $num ."-". $user . " => " .$coins . "%0A";
 
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
@@ -69,8 +69,8 @@ function put($inputData)
 //        $num +=1;
     }
 
-//    return json_encode($inputData) . "%0A%0A" . $exit;
-    return json_encode($inputData) . "%0A%0A" ;
+    return json_encode($inputData) . "%0A%0A" . $exit;
+//    return json_encode($inputData) . "%0A%0A" ;
 
 }
 
@@ -132,10 +132,9 @@ if ($update['message']['text'] == "GetCurrentSt") {
 if (substr($update['message']['text'], 0, 6) == "update") {
     $param = explode(' ', $update['message']['text']);
 
-//    $current_gc = get();
 
 
-    $text = put(json_decode($param[1])) . $param[1];
+    $text = put(json_decode($param[1]));
 
 
 }
