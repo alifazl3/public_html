@@ -66,6 +66,7 @@ function put($inputData)
         $conn->close();
 
         $exit = $exit . "%0A%0A%0A" . "----------" . "%0A%0A%0A";
+        $num +=1;
     }
 
     return json_encode($inputData) . "%0A%0A" . $exit;
