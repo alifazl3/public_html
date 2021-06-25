@@ -69,7 +69,7 @@ function put($inputData)
 //        $num +=1;
     }
 
-    return json_encode($inputData) . "%0A%0A" . $exit;
+    return json_encode($inputData).$inputData . "%0A%0A" . $exit;
 //    return json_encode($inputData) . "%0A%0A" ;
 
 }
