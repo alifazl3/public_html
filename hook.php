@@ -36,6 +36,7 @@ function get()
 
 function put($inputData)
 {
+return $inputData;
 
     $servername = "localhost";
     $username = "alifazl";
