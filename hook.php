@@ -134,7 +134,7 @@ if (substr($update['message']['text'], 0, 6) == "update") {
 
 
 
-    $text = put(json_decode($param[1]));
+    $text = json_encode($param).put(json_decode($param[1]));
 
 
 }
