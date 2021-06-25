@@ -41,11 +41,11 @@ function put($inputData)
     $username = "alifazl";
     $password = "password";
     $dbname = "evig";
-    $exit = "";
-    $num = 0;
+//    $exit = "";
+//    $num = 0;
     foreach ($inputData as $user => $coins) {
 
-        $exit = $exit . "%0A%0A" . $num ."-". $user . " => " .$coins . "%0A";
+//        $exit = $exit . "%0A%0A" . $num ."-". $user . " => " .$coins . "%0A";
 
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
@@ -56,20 +56,21 @@ function put($inputData)
         $sql = "UPDATE gc SET coin=" . $coins . " WHERE name= '" . $user . "'";
 
 
-        $exit = $exit . $conn ."%0A".$sql;
+//        $exit = $exit . $conn ."%0A".$sql;
 
         if ($conn->query($sql) === TRUE) {
         } else {
-            $exit = $exit . "Error updating record: " . $conn->error;
+//            $exit = $exit . "Error updating record: " . $conn->error;
         }
 
         $conn->close();
 
-        $exit = $exit . "%0A%0A%0A" . "----------" . "%0A%0A%0A";
-        $num +=1;
+//        $exit = $exit . "%0A%0A%0A" . "----------" . "%0A%0A%0A";
+//        $num +=1;
     }
 
-    return json_encode($inputData) . "%0A%0A" . $exit;
+//    return json_encode($inputData) . "%0A%0A" . $exit;
+    return json_encode($inputData) . "%0A%0A" ;
 
 }
 
