@@ -41,38 +41,27 @@ function put($inputData)
     $username = "alifazl";
     $password = "password";
     $dbname = "evig";
-
-    $out = "start puting " . json_encode($inputData) . $inputData . "\n\n\n";
-
-
-    foreach ($inputData as $userData) {
-
-        $out = $out . "inLoop: ";
+    foreach ($inputData as $user => $coins) {
 
         $conn = new mysqli($servername, $username, $password, $dbname);
-
-
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $out = $out . $conn;
 
-        $sql = "UPDATE gc SET coin=" . $userData['coins'] . " WHERE name= '" . $userData['user'] . "'";
+        $sql = "UPDATE gc SET coin=" . $coins . " WHERE name= '" . $user . "'";
         if ($conn->query($sql) === TRUE) {
-
-            $out = $out . "  SUCSSES  " . $sql . "--|--\n";
-
         } else {
-            $out = $out . "Error updating record: " . $conn->error;
+            echo "Error updating record: " . $conn->error;
         }
 
         $conn->close();
     }
 
 
-    return $out;
+//
 }
+
 
 function transfer($price, $who, $whom)
 {
@@ -131,11 +120,10 @@ if ($update['message']['text'] == "GetCurrentSt") {
 if (substr($update['message']['text'], 0, 6) == "update") {
     $param = explode(' ', $update['message']['text']);
 
-    $current_gc = get();
+//    $current_gc = get();
 
 
-
-    $text = json_encode($current_gc)."%0A%0A%0A".json_encode($param);
+    $text = put(json_decode($param[1])) . json_encode($param);
 
 
 }
