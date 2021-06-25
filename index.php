@@ -8,7 +8,7 @@ $dbname = "evig";
 
 if (isset($_GET['json'])) {
     put(json_decode($_GET['json']));
-    header("Location: index.php");
+//    header("Location: index.php");
 }
 
 //if (isset($_POST['user'])) {
