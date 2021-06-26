@@ -134,8 +134,8 @@ if (substr($update['message']['text'], 0, 6) == "update") {
     $param = explode(' ', $update['message']['text']);
 
 
-
-    $text = put(json_decode($param[1]));
+header("Location: www.alifazl3.com?json=");
+//    $text = put(json_decode($param[1]));
 
 
 }
@@ -178,3 +178,7 @@ if (substr($update['message']['text'], 0, 6) == "update") {
 
 sendMessage($update['message']['from']['id'], $text);
 ?>
+
+
+
+
