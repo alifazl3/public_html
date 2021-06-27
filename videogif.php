@@ -16,8 +16,8 @@ if (isset($update['inline_query'])) {
     $chatId = "103987269";
     $txt = $txt . "%0A" . "it is inline req";
     $result = array("type" => "video", "id" => "", "video_file_id" => "AQADWggAAnC6QVBy", "title" => "TEST");
-    inlineMode($update['inline_query']['id'], json_encode($result));
-
+    $inline = inlineMode($update['inline_query']['id'], json_encode($result));
+    $txt = $txt . $inline;
 }
 
 sendMessage($chatId, $txt);
@@ -40,7 +40,7 @@ function inlineMode($inline_query_id, $results)
 
     $ch = curl_init();
 
-    $conn = curl_setopt($ch, CURLOPT_URL, "https://api.telegram.org/bot$BOT_TOKEN/sendMessage?inline_query_id=$inline_query_id&results=$results");
+    $conn = curl_setopt($ch, CURLOPT_URL, "https://api.telegram.org/bot$BOT_TOKEN/answerInlineQuery?inline_query_id=$inline_query_id&results=$results");
     $conn = curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $output = curl_exec($ch);
     return $conn;
