@@ -17,7 +17,7 @@ if (isset($update['inline_query'])) {
     $txt = $txt . "%0A";
     $result = array("type" => "video", "id" => $update['inline_query']['id'], "video_file_id" => "AAMCBAADGQEAAxdg2EeOPd-vpak_GwKjuKugBy1geQACWggAAnC6QVBewCw0brMbLAEAB20AAyAE", "title" => "ok");
     $inlineAnswer = inlineMode($update['inline_query']['id'], json_encode($result));
-    $txt = $txt . $inlineAnswer . "%0A%0A%0A" . json_encode($result)."%0A%0A";
+    $txt = $txt . $inlineAnswer . "%0A%0A%0A" . json_encode($result);
 }
 
 sendMessage($chatId, $txt);
