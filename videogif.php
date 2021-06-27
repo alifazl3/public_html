@@ -1,12 +1,17 @@
 <?php
 
 echo "hello_world";
-$chatId = "103987269";
+
 
 
 $update = file_get_contents('php://input');
 $update = json_decode($update, true);
 $txt = json_encode($update);
+
+
+//$chatId = "103987269";
+$chatId = $update['message']['from']['id'];
+
 
 sendMessage($chatId,$txt);
 
