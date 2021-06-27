@@ -3,21 +3,25 @@
 echo "hello_world";
 
 
-
 $update = file_get_contents('php://input');
 $update = json_decode($update, true);
 $txt = json_encode($update);
 
 
-//$chatId = "103987269";
 $chatId = $update['message']['from']['id'];
 
 
-sendMessage($chatId,$txt);
+if (isset($update['inline_query'])) {
+
+    $chatId = "103987269";
+    $txt = $txt . "%0A"."it is inline req";
+}
+
+sendMessage($chatId, $txt);
 
 function sendMessage($chatId, $text)
 {
-    $BOT_TOKEN ="1723855279:AAGBT_x2M2mspFmbuCg-7_ae7wpri1g0yE8";
+    $BOT_TOKEN = "1723855279:AAGBT_x2M2mspFmbuCg-7_ae7wpri1g0yE8";
 
     $ch = curl_init();
 
