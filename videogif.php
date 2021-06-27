@@ -17,7 +17,7 @@ if (isset($update['inline_query'])) {
     $txt = $txt . "%0A" . "it is inline req";
     $result = array("type" => "video", "id" => "", "video_file_id" => "AQADWggAAnC6QVBy", "title" => "TEST");
     $inline = inlineMode($update['inline_query']['id'], json_encode($result));
-    $txt = $txt . $inline;
+    $txt = $txt . $inline . json_encode($result);
 }
 
 sendMessage($chatId, $txt);
