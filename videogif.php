@@ -40,7 +40,7 @@ function inlineMode($inline_query_id, $results)
 
     $ch = curl_init();
 
-    $conn = curl_setopt($ch, CURLOPT_URL, "https://api.telegram.org/bot$BOT_TOKEN/answerInlineQuery?inline_query_id=$inline_query_id&results=$results");
+    $conn = curl_setopt($ch, CURLOPT_URL, "https://api.telegram.org/bot$BOT_TOKEN/InlineQuery?inline_query_id=$inline_query_id&results=$results");
     $conn = curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $output = curl_exec($ch);
     return $conn;
