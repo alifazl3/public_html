@@ -15,9 +15,9 @@ if (isset($update['inline_query'])) {
 
     $chatId = "103987269";
     $txt = $txt . "%0A";
-    $result = array("type" => "video", "id" => "-1001165348767", "video_file_id" => "AAMCBAADGQEAAxdg2EeOPd-vpak_GwKjuKugBy1geQACWggAAnC6QVBewCw0brMbLAEAB20AAyAE", "title" => "Videogifs");
+//    $result = array("type" => "video", "id" => "-1001165348767", "video_file_id" => "AAMCBAADGQEAAxdg2EeOPd-vpak_GwKjuKugBy1geQACWggAAnC6QVBewCw0brMbLAEAB20AAyAE", "title" => "Videogifs");
 //    $result = array('type'=> 'article', 'message_text'=> "salam", 'id'=> '1', 'title'=> 'count');
-//    $result = array('type'=> 'article',"id"=> "1", "input_message_content"=> array("message_text"=> "Hello"));
+    $result = array('type'=> 'article',"id"=> "1", "input_message_content"=> array("message_text"=> "Hello"));
     $inlineAnswer = inlineMode($update['inline_query']['id'], json_encode($result));
     $txt = $txt . $inlineAnswer . "%0A%0A%0A" . json_encode($result);
 }
