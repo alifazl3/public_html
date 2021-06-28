@@ -19,7 +19,7 @@ if (isset($update['inline_query'])) {
 //    $result = array('type'=> 'article', 'message_text'=> "salam", 'id'=> '1', 'title'=> 'count');
     $result = array('type' => 'article', "id" => "1", "input_message_content" => array("message_text" => "Hello"));
 
-    $inlineAnswer = do_post(array($update['inline_query']['id'], json_encode($result)));
+    $inlineAnswer = curlPost(array($update['inline_query']['id'], json_encode($result)));
 
 //    $inlineAnswer = inlineMode($update['inline_query']['id'], json_encode($result));
     $txt = $txt . $inlineAnswer . "%0A%0A%0A" . json_encode($result);
@@ -52,21 +52,38 @@ function inlineMode($inline_query_id, $results)
 }
 
 
-function do_post($params)
-{
+function curlPost($data = NULL, $headers = []) {
+
     $BOT_TOKEN = "1723855279:AAGBT_x2M2mspFmbuCg-7_ae7wpri1g0yE8";
     $url = "https://api.telegram.org/bot$BOT_TOKEN/InlineQuery";
 
-    $options = array(
-        'http' => array(
-            'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-            'method' => 'POST',
-            'content' => $params
-        )
-    );
-    $result = file_get_contents($url, false, stream_context_create($options));
 
-    return $result;
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 5); //timeout in seconds
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_ENCODING, 'identity');
+
+
+    if (!empty($data)) {
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    }
+
+    if (!empty($headers)) {
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    }
+
+    $response = curl_exec($ch);
+    if (curl_error($ch)) {
+        trigger_error('Curl Error:' . curl_error($ch));
+    }
+
+    curl_close($ch);
+    return $response;
 }
+
 
 ?>
