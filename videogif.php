@@ -65,6 +65,8 @@ function do_post($params)
         )
     );
     $result = file_get_contents($url, false, stream_context_create($options));
+
+    return $result;
 }
 
 ?>
