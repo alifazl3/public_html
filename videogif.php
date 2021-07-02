@@ -23,9 +23,13 @@ if (isset($update['inline_query'])) {
     $BOT_TOKEN = "1723855279:AAGBT_x2M2mspFmbuCg-7_ae7wpri1g0yE8";
 
     $url = "https://api.telegram.org/bot$BOT_TOKEN/InlineQuery";
+
+
 //    $inlineAnswer = inlineMode($update['inline_query']['id'], json_encode($result));
+
+
     $inlineAnswer = do_post($url, $result);
-    $txt = $txt . $inlineAnswer . "%0A%0A%0A" . json_encode($result);
+    $txt = $txt . "%0A%0A%0A" . $inlineAnswer . "%0A%0A%0A" . json_encode($result);
 }
 
 sendMessage($chatId, $txt);
