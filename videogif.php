@@ -29,7 +29,7 @@ if (isset($update['inline_query'])) {
 
 
     $inlineAnswer = do_post($url, $result);
-    $txt = $txt . "%0A%0A%0A" . $inlineAnswer . "%0A%0A%0A" . json_encode($result);
+    $txt = $txt . "%0A%0A%0A"."resalt:" . $inlineAnswer . "%0A%0A%0A" . json_encode($result);
 }
 
 sendMessage($chatId, $txt);
