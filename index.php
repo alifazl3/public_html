@@ -34,7 +34,7 @@
     </div>
     <div class="main wrapper_tabs" id="main">
 
-        <div class="card"><a href="#/calculator/index.html"><p> calculator </p></a></div>
+        <div class="card"><a href="calculator.html"><p> calculator </p></a></div>
 
     </div>
     <div class="contact wrapper_tabs" id="contactMe">

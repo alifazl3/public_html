@@ -1,11 +1,11 @@
 @font-face {
     font-family: header;
-    src: url("HelloPirates.otf");
+    src: url("fonts/HelloPirates.otf");
 }
 
 @font-face {
     font-family: menu;
-    src: url("Yomogi-Regular.ttf");
+    src: url("fonts/Yomogi-Regular.ttf");
 }
 
 html {
@@ -279,3 +279,10 @@ li {
 
 
 }
+
+
+@font-face {
+    src: url("fonts/digital-7.ttf");
+    font-family: digital;
+}
+
