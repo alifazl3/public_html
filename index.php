@@ -9,8 +9,8 @@
     </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="width=device-width, initial-scale=1" name="viewport">
-<!--    <link href="style.css" rel="stylesheet">-->
-    
+    <link href="style.css" rel="stylesheet">
+
     <script src="functions.js"></script>
 
 </head>
