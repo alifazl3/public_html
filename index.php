@@ -1,283 +1,88 @@
 <?php
 
-
-$servername = "localhost";
-$username = "alifazl";
-$password = "password";
-$dbname = "evig";
-
-if (isset($_GET['json'])) {
-    put(json_decode($_GET['json']));
-//    header("Location: index.php");
-}
-
-//if (isset($_POST['user'])) {
-//    var_dump($_POST);
-//}
-
-
-function get()
-{
-
-    $servername = "localhost";
-    $username = "alifazl";
-    $password = "password";
-    $dbname = "evig";
-    $export = array();
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    $sql = "SELECT * FROM gc";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        // output data of each row
-        while ($row = $result->fetch_assoc()) {
-//	var_dump($row);
-//	echo "<br>";
-
-            array_push($export, $row);
-        }
-    } else {
-        echo "0 results";
-    }
-
-
-    $conn->close();
-
-    return $export;
-
-}
-
-
-function put($inputData)
-{
-
-    $servername = "localhost";
-    $username = "alifazl";
-    $password = "password";
-    $dbname = "evig";
-    foreach ($inputData as $user => $coins) {
-
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
-
-        $sql = "UPDATE gc SET coin=" . $coins . " WHERE name= '" . $user . "'";
-        if ($conn->query($sql) === TRUE) {
-        } else {
-            echo "Error updating record: " . $conn->error;
-        }
-
-        $conn->close();
-    }
-
-
-//
-}
-
-
-//function add($price, $whom)
-//{
-//    $current_gc = get();
-//    $current_gc[$whom]+=$price;
-//    put(json_encode($current_gc));
-//
-//}
-//
-//
-//function sub($price, $whom)
-//{
-//    $current_gc = get();
-//    $current_gc[$whom]=$current_gc[$whom]-$price;
-//    put(json_encode($current_gc));
-//}
-//
-//
-//function transfer($price, $who, $whom)
-//{
-//
-//    $current_gc = get();
-//    $current_gc[$who]=$current_gc[$who]-$price;
-//    $current_gc[$whom]=$current_gc[$whom]+$price;
-//    put(json_encode($current_gc));
-//
-//}
-//
-//
-
-//
-//
-//$persons = array(
-//    "shamc",
-//    "ehsan",
-//    "amir",
-//    "nima",
-//    "emad",
-//    "mehran",
-//    "hayan",
-//    "razaz",
-//    "alis",
-//    "tarighat",
-//    "hesan",
-//    "hamed",
-//    "hasan"
-//);
-$current_gc = get();
-
-
-//var_dump($current_gc);
-//echo count($persons);
-
-
 ?>
-
-<html>
+<!DOCTYPE html>
+<html lang="EN">
 <head>
-    <link rel="stylesheet" href="style.css">
+    <title>
+        home
+    </title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="style.css" rel="stylesheet">
+    <script src="functions.js"></script>
+
 </head>
 <body>
-<div class="top">
-    <div class="change_btn">
-        <form target="#" method="get">
-            <input type="text" value="" name="json" id="forminput" style="display: none;width: 0px;height: 0px">
-            <input type="submit" value="confirm change" onclick="change()" class="submit">
-        </form>
+
+<div class="header">
+    <span class="left" id="mySidenavToggleBtn" onclick="toggleSideMenu()"> menu</span>
+    <span class="middle"><strong>welcome</strong></span>
+    <span class="right" onclick="openModal('logIN')">Log in</span>
+</div>
+<div class="wrapper">
+    <div class="SideMenu" id="mySidenav">
+        <ul class="menuList">
+            <li onclick="changeTab('main')">&#9776; home</li>
+            <li>&#9776; tools</li>
+            <li>&#9776; games</li>
+            <li>&#9776; diary</li>
+            <li>&#9776; idk</li>
+            <li onclick="changeTab('contactMe')">&#9776; contact me</li>
+        </ul>
     </div>
+    <div class="main wrapper_tabs" id="main">
 
-    <div>
+        <div class="card"><a href="#/calculator/index.html"><p> calculator </p></a></div>
 
-        <button class="login_btn" id="myBtn">log in</button>
-
-        <div class="form modal-content" id="myModal">
-            <span class="close">&times;</span>
-            <form target="index" method="post">
-                <input class="loginInput" name='user' type="text" placeholder="username">
-                <input class="loginInput" name="pass" type="password" placeholder="pass">
-                <input class="loginInput" type="submit" value="verify">
-            </form>
+    </div>
+    <div class="contact wrapper_tabs" id="contactMe">
+        <div class="big_card">
+            <p>
+                Hi, I'm Ali and welcome to this personal site
+                <br>
+                I'll be happy if you share your opinion with me
+                <br>
+                <b>email:</b>
+                <br>
+                <strong>fazlolahiali@gmail.com</strong>
+                <br>
+                <strong>telegram?</strong>
+                <br>
+                @alifazl3 or <a href="https://t.me/alifazl3">Click on me</a>
+                <br>
+                donation?
+                <br>
+                sure, why not? ( coming soon )
+                <br>
+                <br>
+                <br>
+            <center>
+                thank you :)
+            </center>
+            </p>
         </div>
     </div>
 
-
-</div>
-<div>
-    <table id="myTable">
-        <th onclick="sortTable(0)">Name</th>
-        <th onclick="sortTable(1)">gc</th>
-
-        <?php
-        foreach ($current_gc as $user) {
-            echo "<tr>";
-            echo "<td>" . $user['id'] . "</td>";
-            echo "<td>" . $user['name'] . "</td>";
-            echo "<td contenteditable>" . $user['coin'] . "</td>";
-            echo "</tr>";
-        }
-        ?>
-    </table>
 </div>
 
+<div class="modal" id="modals">
+    <div class="logInModal" id="logIN">
+        <div class="close">
+            <span class="closeLogo" onclick="closeModal('logIN')">
+                &times;
+            </span>
+        </div>
+        <div class="form">
+            <form method="post" type="#">
+                <input class="loginInput usernameInput" name="user" placeholder="user name" type="text">
+                <input class="loginInput" name="password" placeholder="password" type="password">
+                <input class="loginInput submit" name="submit" type="submit" value="login">
+            </form>
+        </div>
 
-<script>
-    sortTable();
+    </div>
 
-    function sortTable() {
-        var table, rows, switching, i, x, y, shouldSwitch;
-        table = document.getElementById("myTable");
-        switching = true;
-        /*Make a loop that will continue until
-        no switching has been done:*/
-        while (switching) {
-            //start by saying: no switching is done:
-            switching = false;
-            rows = table.rows;
-
-            /*Loop through all table rows (except the
-            first, which contains table headers):*/
-            for (i = 1; i < (rows.length - 1); i++) {
-                //start by saying there should be no switching:
-                shouldSwitch = false;
-                /*Get the two elements you want to compare,
-                one from current row and one from the next:*/
-                x = rows[i].getElementsByTagName("TD")[1];
-                y = rows[i + 1].getElementsByTagName("TD")[1];
-
-                if (x.innerText < 0) {
-                    rows[i].getElementsByTagName("TD")[1].className = 'badsit';
-                    rows[i].getElementsByTagName("TD")[0].className = 'badsit';
-                }
-                if (y.innerText < 0) {
-                    rows[i + 1].getElementsByTagName("TD")[1].className = 'badsit';
-                    rows[i + 1].getElementsByTagName("TD")[0].className = 'badsit';
-                }
-
-                //check if the two rows should switch place:
-                if (Number(x.innerHTML) < Number(y.innerHTML)) {
-                    //if so, mark as a switch and break the loop:
-                    shouldSwitch = true;
-                    break;
-                }
-            }
-            if (shouldSwitch) {
-                /*If a switch has been marked, make the switch
-                and mark that a switch has been done:*/
-                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                switching = true;
-            }
-        }
-    }
-
-    function change() {
-
-
-        var data = {};
-        var table = document.getElementById("myTable");
-        for (var i = table.rows.length - 1; i > 0; i--) {
-            var key = table.rows[i].childNodes[1].innerText;
-            var value = table.rows[i].childNodes[2].innerText;
-            data[key] = value;
-        }
-        console.log(data);
-        console.log(JSON.stringify(data));
-        document.getElementById("forminput").value = JSON.stringify(data);
-        return JSON.stringify(data);
-    }
-
-    var modal = document.getElementById("myModal");
-
-    var btn = document.getElementById("myBtn");
-
-    var span = document.getElementsByClassName("close")[0];
-
-    btn.onclick = function () {
-        modal.style.display = "block";
-    }
-    span.onclick = function () {
-        modal.style.display = "none";
-    }
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-
-</script>
-
+</div>
 </body>
 </html>
-
-
-<?php
-
-//put($current_gc);
-
-
-?>
