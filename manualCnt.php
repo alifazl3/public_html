@@ -25,6 +25,9 @@ if (isset($_POST['chatId'])){
 <body>
 
 <form method="post" target="#">
+    <input type="text" value="" placeholder="token" name="token">
+    <br>
+    <br>
     <input type="text" placeholder="chatId" name="chatId">
     <input type="text" placeholder="text" name="text">
     <input type="submit" value="send">
